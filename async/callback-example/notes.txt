@@ -1,0 +1,13 @@
+callbacks - functions that are called after some other unit of work is completed. 
+
+show callback getting invoked in the debugger
+
+show more examples:
+- callbacks that take in arguments 
+- callbacks that don't use anonymous functions
+
+
+reiterate the addEventListener and readystatechange as callbacks, but rather 
+than executing immediately they execute async 
+
+

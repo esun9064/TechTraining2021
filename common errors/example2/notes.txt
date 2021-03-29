@@ -1,0 +1,43 @@
+Not all "bugs" will generate an error. Some are "logic" bugs
+aka the program doesn't fail but does the wrong thing
+
+Show equality problem. Use === to compare. Strict equality. Compares both value and type.  
+
+Use this as an opportunity to show that you can use the console to test 
+
+Examples:
+1 === 1   // true
+1 == '1'  // true
+1 === '1' // false
+
+- reason this happens is because will attempt to coerce values of different types for certain operations
+- when checking equality, javascript will attempt to coerce non numeric types into numbers 
+
+what about:
+'true' == true    // false 
+'false' == false  // false 
+'0' == false      // true 
+[] === [] // false 
+
+- js doesn't know try to coerce to boolean, it attempt to coerce 'false' to number, but can't 
+- '0' javascript will coerce this to 0, 0 is equivalent to false 
+- reference, they're different arrays 
+
+'0' === false     // false 
+
+
+numeric operations: 
+1 + 2   // 3
+"1" + 2   // 12 
+"1" + "2" // 12 
+1+2+"3"   // 33
+ "1"+"2"+3    // 123
+
+
+
+'+' triggers implicit conversion to string 
+'==' triggers implicit number conversion 
+
+
+
+

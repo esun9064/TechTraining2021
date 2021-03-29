@@ -1,0 +1,3 @@
+mention callback hell, from all the nested callbacks. Discuss promises as a potential solution but move onto responses
+
+

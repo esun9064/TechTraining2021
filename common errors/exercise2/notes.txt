@@ -1,0 +1,7 @@
+Show that simple addition is working, but that decimals are not handled correctly 
+
+discuss concept of integers and floats.
+
+integers round down to whole numbers, floats can have decimal precision, participants should be able 
+to use that in mind to figure out the bug 
+

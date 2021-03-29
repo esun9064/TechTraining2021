@@ -1,0 +1,5 @@
+Prerequistes:
+Discuss how you can use dev tools to view HTML 
+show how you can retrieve HTML elements from JS (make this into a slide)
+
+Preview callbacks with this code when explaining it

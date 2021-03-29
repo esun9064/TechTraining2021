@@ -1,0 +1,7 @@
+Refactored code, introduced some bugs, fix all errors until calculator is working again 
+
+Common errors:
+
+- referencing something that doesn't exist yet, specifically HTML elements
+- null reference exceptions
+- forgetting to pass in variables to functions

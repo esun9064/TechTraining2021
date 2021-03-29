@@ -1,0 +1,17 @@
+use setTimeOut to simulate an async function that returns back some data 
+
+code as currently written will fail because the data is retrieved asynchronously
+and can't be accessed because it returns back at a later point in time. 
+
+loginUser and setTimeout return immediately, the email value that we want only returns after 2 seconds. 
+
+Need to use a callback to retrieve the async value, 
+
+show how we update the code to do this, we give loginUser a callback parm, and in our settimeout, 
+we can invoke the callback once the email is retrieved, and we can pass the email to the callback. 
+
+And then in our calling code, we can pass along an anonymous function as our callback, this anonymous function
+takes in an email object, and we can then interact with the email object within our anonymouse function 
+
+
+show how this works in the debugger, step through all the code via break points

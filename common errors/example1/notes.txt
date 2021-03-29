@@ -1,0 +1,7 @@
+Prequisites: discuss chrome dev tools and the console and sources section and how to set break points 
+
+
+Demonstrate how to use the console in dev tools
+to find errors, and how to read the stack trace in the error 
+
+Step through the function to find the bug with the group

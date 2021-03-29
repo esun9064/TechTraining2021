@@ -1,0 +1,11 @@
+- Learn how to debug js+html using chrome developer tools 
+  - set break points
+  - inspect elements
+  - interact with console 
+  - examine stack trace 
+
+- recognize and understand how to write callback functions
+- understand the differences between synchronous and asynchronous code
+- understand the importance of callback functions to async code 
+- learn the basics of how web requests are sent, and how responses are parsed 
+- learn how promises can be used to wrap synchronous and async code 

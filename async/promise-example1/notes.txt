@@ -1,0 +1,12 @@
+demonstrate promises
+
+onFulfilled, and onRejected
+
+show how to initialize a promise, how to resolve and reject a promise 
+
+.then() to get back the onFulfilled and onRejected 
+
+.then()
+.catch() 
+
+instead of onFulfilled and onRejected

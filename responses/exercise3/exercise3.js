@@ -1,75 +1,78 @@
 /**
- * Rewrite this class to use promises and fetchRequest
+ * 1. Implement the search pokemon feature. When a user types a pokemon's
+ *    name into the input box, and clicks the search button, the page 
+ *    should return the pokemon's information back to the user
  */
+
 document.addEventListener('DOMContentLoaded', (e) => {
-  // get the html element with id 'time', this will 
-  // correspond to the span element defined in exercise1.html
-  const time = document.getElementById('time');
+  const inputText = document.getElementById('pokemon-input');
 
-  // retrieve time information for the current IP address 
-  let url = `http://worldtimeapi.org/api/ip`;
+  const searchButton = document.getElementById('search');
 
-  fetchRequest(url, 'GET', 'json')
-    .then(response => {
-      // save the time information in the html element with id 'time'
-      time.innerText = `${response.timezone}: ${response.datetime}`;
-    })
-    .catch(response => {
-      // placeholder logic in case the request failed  
-      console.log('response failed');
-    });
-
-  // find the html element with id 'select-timezone'
-  // this will map to the select dropdown in example1.html
-  const select = document.getElementById('select-timezone'); 
-
-  // list all available time zones
-  url = `http://worldtimeapi.org/api/timezone`;
-
-  /* REPLACE with fetchRequest */
-  sendRequest(url, 'GET', 'json', response => {
-    // insert all returned time zones into the select-timezone dropdown
-    response.forEach(timeZone => {
-      let el = document.createElement('option');
-      el.textContent = timeZone;
-      el.value = timeZone;
-      select.appendChild(el);
-    });
-  }, response => {
-    console.log('response failed');
+  searchButton.addEventListener('click', e => {
+    searchPokemon(inputText.value.toLowerCase());
   });
 
-  select.addEventListener('change', e => {
-    const timeZone = e.currentTarget.value;
+  const evolvesFrom = document.getElementById('evolves-from');
+  evolvesFrom.addEventListener('click', e => {
+    const pokemonName = e.currentTarget.innerText.toLowerCase();
+    searchPokemon(pokemonName);
+  });
 
-    // retrieve time information for the current IP address 
-    const url = `http://worldtimeapi.org/api/timezone/${timeZone}`;
+  // MOVE all of the below code into your request callbacks 
 
-    /* REPLACE with fetchRequest */
-    sendRequest(
-      url, 'GET', 'json', response => {
-      // save the time information in the html element with id 'time'
-      time.innerText = `${response.timezone}: ${response.datetime}`;
-    }, response => {
-      // placeholder logic in case the request failed  
-      console.log('response failed');
-    });
+  // render a pokemon's name, MOVE this code into a request callback and dynamically
+  // retrieve a pokemon's name from the response object
+  const nameHeading = document.getElementById('pokemon-name');
+  nameHeading.innerText = 'Pikachu';
+
+  // render pokemon image, MOVE this code into a request callback and dynamically 
+  // retrieve a pokemon's image from the response object
+  const imgElem = document.getElementById('pokemon-image');
+  imgElem.setAttribute(
+    'src', 
+    'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png'
+  );
+
+  // render pokemon description, MOVE this code into a request callback and dynamically 
+  // retrieve a pokemon's description from the response object
+  const description = document.getElementById('description');
+  description.innerText = 'When several of\nthese POKéMON\ngather, theirelectricity could\nbuild and cause\nlightning storms.';
+
+  // render name of the "evolves from Pokemon", MOVE this code into a request callback
+  // and dynmically populate this field
+  const evolvesFromLink = document.getElementById('evolves-from');
+  evolvesFromLink.innerText = 'Pichu';
+
+  // (optional) MOVE this code into a request callback and try to populate a pokemon's stats using this 
+  // code as a template 
+  const statsListElement = document.getElementById('stats-list');
+  while (statsListElement.firstChild) {
+    statsListElement.removeChild(statsListElement.firstChild);
+  }
+  const stats = [
+    {name: 'Attack', base_stat: '55'},
+    {name: 'HP', base_stat: '35'},
+    {name: 'Special Attack', base_stat: '50'},
+    {name: 'Special Defense', base_stat: '50'},
+    {name: 'Defense', base_stat: '40'},
+    {name: 'Speed', base_stat: '90'},
+  ];
+  stats.forEach(stat => {
+    let el = document.createElement('li');
+    el.innerText = `${stat.name}: ${stat.base_stat}`;
+    statsListElement.appendChild(el);
   });
 });
 
 /**
- * Create a promise object for an HTTP request
- * @param {string} url request url
- * @param {string} method request method
- * @param {string} responseType returned response type
- * @returns Promise object for the given http request
+ * Return information for the given pokemon
+ * @param {string} pokemonName pokemon to search for
  */
-const fetchRequest = (url, method, responseType) => {
-  // IMPLEMENT fetch request via promises
-  // HINT try to resuse sendRequest
-  let requestPromise;
+const searchPokemon = (pokemonName) => {
+  // send a request to get basic pokemon information 
 
-  return requestPromise;
+    // use response from first request to get pokedex information 
 };
 
 /**

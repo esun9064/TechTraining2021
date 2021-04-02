@@ -1,72 +1,55 @@
 /**
- * 1. We can make our code easier to understand by creating a
- *    reusable 'sendRequest' method for sending HTTP requests. 
- *    Implement the sendRequest method defined at the end of this file.
- * 2. Update this page so that when a user makes a timezone selection, 
- *    the time displayed on the page is updated to reflect 
- *    the user's selected time zone. 
- */
-document.addEventListener('DOMContentLoaded', (e) => {
-  // get the html element with id 'time', this will 
-  // correspond to the span element defined in exercise1.html
-  const time = document.getElementById('time');
-
-  // retrieve time information for the current IP address 
-  let url = `http://worldtimeapi.org/api/ip`;
-
-  sendRequest(url, 'GET', 'json', response => {
-    // save the time information in the html element with id 'time'
-    time.innerText = `${response.timezone}: ${response.datetime}`;
-  }, response => {
-    // placeholder logic in case the request failed  
-    console.log('response failed');
-  });
-
-  // find the html element with id 'select-timezone'
-  // this will map to the select dropdown in example1.html
-  const select = document.getElementById('select-timezone'); 
-
-  // list all available time zones
-  url = `http://worldtimeapi.org/api/timezone`;
-
-  sendRequest(url, 'GET', 'json', response => {
-    // insert all returned time zones into the select-timezone dropdown
-    response.forEach(timeZone => {
-      let el = document.createElement('option');
-      el.textContent = timeZone;
-      el.value = timeZone;
-      select.appendChild(el);
-    });
-  }, response => {
-    console.log('response failed');
-  });
-
-  // add an event listener to the time zone drop down
-  select.addEventListener('change', e => {
-    // HINT use e.currentTarget.value to get the timezone from the dropdown
-
-    // retrieve time information for a given time zone
-    // HINT you can use `http://worldtimeapi.org/api/timezone/${timeZone}` to create
-    // a string with an interpolated variable 
-
-    // send a request to the above url 
-
-    // update the span element to display the current timezone and time 
-  });
-});
-
-/**
- * Send http request
- * @param {string} url request url
- * @param {string} method request method
- * @param {string} responseType returned response type
- * @param {callback} onSuccess callback to invoke when request is successful
- * @param {callback} onFailure callback to invoke when request failed
- */
-const sendRequest = (url, method, responseType, onSuccess, onFailure) => {
+ * send an HttpRequest to retrieve a random cat fact and log the returned response
+ * to your console.
+ * see https://github.com/esun9064/Cat-Facts/tree/master
+ * for instructions on how to build your request 
+ */ 
+const getRandomCatFact = () => {
   // INITIALIZE a new XMLHttpRequest here
+
+  // Call .open() on the xml http request object 
 
   // DEFINE onload and callback behavior
 
   // SEND request
 };
+getRandomCatFact();
+
+/**
+ * Send a request to retrieve a random dog fact and log the returned response to your 
+ * console. 
+ * see https://github.com/esun9064/Cat-Facts/tree/master
+ * for instructions on how to build your request 
+ */
+const getRandomDogFact = () => {
+
+};
+getRandomDogFact();
+
+
+/**
+ * Save some data to the external server and return back the response from the server 
+ * Data to save should have the following format:
+ *   {
+ *     'title': 'tech training 2021',
+ *     'body': 'javascript 201',
+ *     'userId': 1
+ *   };
+ * 
+ */
+const savePost = () => {
+  // initialize a new XMLHttpRequest object
+
+  //let url = `https://jsonplaceholder.typicode.com/posts`;
+
+  // open the request object
+
+  // xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+  
+  // define an onload callback function for the request object 
+
+  // let json = {};
+
+  //xhr.send(JSON.stringify(json));
+};
+savePost();

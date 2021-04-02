@@ -1,1 +1,0 @@
-Get attendees comfortable with writing requests, and using requests with callbacks

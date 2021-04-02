@@ -1,94 +1,29 @@
 /**
- * 1. Implement the search pokemon feature. When a user types a pokemon's
- *    name into the input box, and clicks the search button, the page 
- *    should return the pokemon's information back to the user
- * 2. Clicking on the "evolves from" pokemon should return information about the
- *    evolved pokemon. Make sure you do not show a value if pokemon does not evolve 
+ * 1. We can make our code easier to understand by creating a
+ *    reusable 'sendRequest' method for sending HTTP requests. 
+ *    Implement the sendRequest method defined at the end of this file.
+ * 2. Update this page so that when a user makes a timezone selection, 
+ *    the time displayed on the page is updated to reflect 
+ *    the user's selected time zone. 
  */
-
 document.addEventListener('DOMContentLoaded', (e) => {
-  const inputText = document.getElementById('pokemon-input');
-  searchPokemon(inputText.value.toLowerCase());
+  let catElem = document.getElementById('cat-fact');
+  let dogElem = document.getElementById('dog-fact');
+  // REPLACE with sendRequest()
+  sendRequest(`https://mcm-tt21-cat-facts.herokuapp.com/api/v1/facts`, 'GET', 'json', (response) => {
+    catElem.innerText = response.text;
 
-  const searchButton = document.getElementById('search');
-
-  searchButton.addEventListener('click', e => {
-    searchPokemon(inputText.value.toLowerCase());
+  }, (response) => {
+    console.log('response failed');
   });
+  // REPLACE with sendRequest()
+  sendRequest(`https://mcm-tt21-cat-facts.herokuapp.com/api/v1/facts?animal_type=dog`, 'GET', 'json', (response) => {
+    dogElem.innerText = response.text;
 
-  const evolvesFrom = document.getElementById('evolves-from');
-  evolvesFrom.addEventListener('click', e => {
-    const pokemonName = e.currentTarget.innerText.toLowerCase();
-    searchPokemon(pokemonName);
+  }, (response) => {
+    console.log('response failed');
   });
 });
-
-/**
- * Return information for the given pokemon
- * @param {string} pokemonName pokemon to search for
- */
-const searchPokemon = (pokemonName) => {
-  sendRequest(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, 'GET', 'json', response => {
-
-    // get image 
-    const imgElem = document.getElementById('pokemon-image');
-    imgElem.setAttribute('src', response.sprites.front_default);
-
-    // get pokedex information 
-    sendRequest(response.species.url, 'GET', 'json', response => {
-      // get name of pokemon
-      const nameHeading = document.getElementById('pokemon-name');
-      nameHeading.innerText = response.names.find(name => {
-        return name.language.name === 'en';
-      }).name;
-
-      // get pokemon description 
-      const description = document.getElementById('description');
-      description.innerText = response.flavor_text_entries.find(flavor_text => {
-        return flavor_text.language.name === 'en';
-      }).flavor_text;
-
-      // get evolution chain:
-      const evolvesFromLink = document.getElementById('evolves-from');
-      if (response.evolves_from_species)
-      {
-        sendRequest(response.evolves_from_species.url, 'GET', 'json', response => {
-          // get name of pokemon
-          evolvesFromLink.innerText = response.names.find(name => {
-            return name.language.name === 'en';
-          }).name;
-        }, response => {
-          console.log('failed to get evolution chain');   
-         });
-      } else {
-        // reset field
-        evolvesFromLink.innerText = '';
-      }
-    }, response => {
-      console.log('failed to get pokedex');
-    });
-
-    // get stats information 
-    const statsListElement = document.getElementById('stats-list');
-    const stats = response.stats; 
-    stats.forEach(stat => {
-      sendRequest(stat.stat.url, 'GET', 'json', response => {
-        // get name of stat
-        const statName = response.names.find(name => {
-          return name.language.name === 'en';
-        }).name;
-        let el = document.createElement('li');
-        el.innerText = `${statName}: ${stat.base_stat}`;
-        statsListElement.appendChild(el);
-      }, response => {
-        alert('failed to get stats');
-      });
-    });
-
-  }, response => {
-    alert('Pokemon not found');
-  });
-};
 
 /**
  * Send http request
@@ -99,9 +34,11 @@ const searchPokemon = (pokemonName) => {
  * @param {callback} onFailure callback to invoke when request failed
  */
 const sendRequest = (url, method, responseType, onSuccess, onFailure) => {
+  // INITIALIZE a new XMLHttpRequest here
   const xhr = new XMLHttpRequest();
   xhr.responseType = responseType;
   xhr.open(method, url, true);
+  // DEFINE onload and callback behavior
   xhr.onload = () => {
     let status = xhr.status;
     if (status === 0 || (status >= 200 && status < 400)) {
@@ -110,5 +47,6 @@ const sendRequest = (url, method, responseType, onSuccess, onFailure) => {
       onFailure(xhr.response);
     }
   };
+  // SEND request
   xhr.send();
 };

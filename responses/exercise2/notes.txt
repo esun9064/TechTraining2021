@@ -1,1 +1,1 @@
-Open ended exercise utilizing callbacks and event listeners
+Get attendees comfortable with writing requests, and using requests with callbacks

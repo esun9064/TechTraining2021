@@ -2,7 +2,7 @@
  * Check the console output in dev tools for hints.
  */
 
- const printArray = (testArray) => {
+const printArray = (testArray) => {
   for (let i = 0; i < testArray.length; i++) {
     console.log(testArray[i].text);
   }

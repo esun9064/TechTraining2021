@@ -1,15 +1,14 @@
 /**
  * send an HttpRequest to retrieve a random cat fact and log the returned response
  * to your console.
- * see https://alexwohlbruck.github.io/cat-facts/docs/
- * and https://alexwohlbruck.github.io/cat-facts/docs/endpoints/facts.html
+ * see https://github.com/esun9064/Cat-Facts/tree/master
  * for instructions on how to build your request 
  */ 
  const getRandomCatFact = () => {
   let xhr = new XMLHttpRequest();
   xhr.responseType = 'json';
   let method = 'GET';
-  let url = `https://mcm-tt21-cat-facts.herokuapp.com/api/v1/facts`;
+  let url = `https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts`;
   
   xhr.open(method, url, true);
   xhr.onload = () => {
@@ -28,15 +27,14 @@ getRandomCatFact();
 /**
  * Send a request to retrieve a random dog fact and log the returned response to your 
  * console. 
- * see https://alexwohlbruck.github.io/cat-facts/docs/
- * and https://alexwohlbruck.github.io/cat-facts/docs/endpoints/facts.html
+ * see https://github.com/esun9064/Cat-Facts/tree/master
  * for instructions on how to build your request 
  */
 const getRandomDogFact = () => {
   let xhr = new XMLHttpRequest();
   xhr.responseType = 'json';
   let method = 'GET';
-  let url = `https://mcm-tt21-cat-facts.herokuapp.com/api/v1/facts?animal_type=dog`;
+  let url = `https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts?animal_type=dog`;
   
   xhr.open(method, url, true);
   xhr.onload = () => {

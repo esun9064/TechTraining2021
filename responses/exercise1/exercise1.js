@@ -35,7 +35,7 @@ getRandomDogFact();
  *     'body': 'javascript 201',
  *     'userId': 1
  *   };
- * 
+ *   see https://jsonplaceholder.typicode.com/guide/ for additonal documentation
  */
 const savePost = () => {
   // initialize a new XMLHttpRequest object

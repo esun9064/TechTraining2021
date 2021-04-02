@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
   let catRequest = new XMLHttpRequest();
   catRequest.responseType = 'json';
   let method = 'GET';
-  let url = `https://mcm-tt21-cat-facts.herokuapp.com/api/v1/facts`;
+  let url = `https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts`;
   
   catRequest.open(method, url, true);
   catRequest.onload = () => {
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
   dogRequest = new XMLHttpRequest();
   dogRequest.responseType = 'json';
   method = 'GET';
-  url = `https://mcm-tt21-cat-facts.herokuapp.com/api/v1/facts?animal_type=dog`;
+  url = `https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts?animal_type=dog`;
   
   dogRequest.open(method, url, true);
   dogRequest.onload = () => {

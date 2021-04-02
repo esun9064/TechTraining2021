@@ -10,14 +10,14 @@ document.addEventListener('DOMContentLoaded', (e) => {
   let catElem = document.getElementById('cat-fact');
   let dogElem = document.getElementById('dog-fact');
   // REPLACE with sendRequest()
-  sendRequest(`https://mcm-tt21-cat-facts.herokuapp.com/api/v1/facts`, 'GET', 'json', (response) => {
+  sendRequest(`https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts`, 'GET', 'json', (response) => {
     catElem.innerText = response.text;
 
   }, (response) => {
     console.log('response failed');
   });
   // REPLACE with sendRequest()
-  sendRequest(`https://mcm-tt21-cat-facts.herokuapp.com/api/v1/facts?animal_type=dog`, 'GET', 'json', (response) => {
+  sendRequest(`https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts?animal_type=dog`, 'GET', 'json', (response) => {
     dogElem.innerText = response.text;
 
   }, (response) => {

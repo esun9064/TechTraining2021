@@ -13,3 +13,6 @@ const doSomeStuff = () => {
 
 printAndThenDoSomeStuff(doSomeStuff);
 
+printAndThenDoSomeStuff(() => {
+  console.log(1 + 5);
+});

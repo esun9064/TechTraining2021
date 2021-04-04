@@ -1,6 +1,6 @@
 /**
  * Modify this code to log to console the 
- * the monetary value of each order for the given user 
+ * monetary value of each order for the given user 
  */
 
 console.log('start');

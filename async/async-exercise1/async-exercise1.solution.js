@@ -1,3 +1,8 @@
+/**
+ * Modify this code to log to console the 
+ * monetary value of each order for the given user 
+ */
+
 console.log('start');
 
 const loginUser = (email, password, callback) => {

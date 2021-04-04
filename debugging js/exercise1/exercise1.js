@@ -139,7 +139,7 @@ const addDecimal = (state, display) => {
 };
 
 /**
- * 
+ * Updates display with selected number.
  * @param {state} state calculator state 
  * @param {HTMLElement} key selected key 
  * @param {HTMLElement} display calculator display element

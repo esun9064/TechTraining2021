@@ -1,127 +1,190 @@
 /** 
  * Edge cases:
- * 1. Check to see what happens if the user clicks on 
- *    the decimal key multiple times. If the user has
- *    already clicked on the decimal key, subsequent 
- *    clicks should not add an additional '.' to the 
- *    display text.
- *    HINT: use string.indexOf('.') to determine if a decimal is 
- *     already present in a string
- * 2. Chaining operations should work as expected and 
- *    compute the correct result. Check to see what 
- *    happens if the user clicks on:
- *    55, '-', '5', '*', '2', and then '-'. The result should be
- *    '100'
+ * Chaining operations should work as expected and 
+ * compute the correct result. Check to see what 
+ * happens if the user clicks on:
+ * 55, '-', '5', '*', '2', and then '-'. 
+ * The result should be '100'.
  *
  */
 
-// retrieve HTML elements from the DOM
-const calculator = document.querySelector('.calculator');
-const display = document.querySelector('.calculator-display');
-const keys = calculator.querySelector('.calculator-keys');
+document.addEventListener('DOMContentLoaded', (e) => {
+  // retrieve HTML elements from the DOM
+  const calculator = document.querySelector('.calculator');
+  const display = document.querySelector('.calculator-display');
+  const keys = calculator.querySelector('.calculator-keys');
 
-let firstValue;
-let secondValue; 
+  const state = initializeState();
 
-let previousKeyType;
-let operator;
+  //handle 'click' events where a user clicks on a key in the calculator
+  keys.addEventListener('click', e => {
+    if (e.target.matches('button')) {
+      const key = e.target;
+      const action = key.dataset.action;
+      
+      removeSelectedStyle(key);
 
-//handle 'click' events where a user clicks on a key in the calculator
-keys.addEventListener('click', e => {
- if (e.target.matches('button')) {
-  const key = e.target;
-  const action = key.dataset.action;
-  const keyContent = key.textContent;
-  const displayedNum = display.textContent;
-  
+      switch(action)
+      {
+        case 'clear':
+          clear(state, display);
+          break;
+        case 'add':
+        case 'subtract':
+        case 'multiply':
+        case 'divide':
+          selectOperator(state, key, action, display);
+          break;
+        case 'decimal':
+          addDecimal(state, display);
+          break;
+        case 'calculate':
+          selectCalculate(state, display);
+          break;
+        default:
+          selectNumber(state, key, display);
+          break;
+      }
+    }
+  });
+});
+
+/** 
+ * Create object to encapsulate current 
+ * state of the calculator
+ * @returns state object
+ */ 
+const initializeState = () => {
+  return {
+    firstValue: '',
+    secondVaue: '',
+    previousKeyType: '',
+    operator: ''
+  };
+};
+
+/**
+ * Clear the selected style from all keys
+ * @param {HTMLElement} key target key
+ */
+const removeSelectedStyle = (key) =>
+{
   // reset the highlighted style on operator keys
   Array.from(key.parentNode.children)
   .forEach(k => k.classList.remove('selected'));
+};
 
-  if (action === 'clear')
-  {
-    // 'AC' key was clicked, clear state variables
-    firstValue = '';
-    secondValue = '';
-    previousKeyType = '';
-    operator = '';
-    // reset the display 
-    display.textContent = '0';
-  }
+/**
+ * Clear state of the calculator
+ * @param {state} state calculator state
+ * @param {HTMLElement} display calculator display element  
+ */
+const clear = (state, display) => {
+  // clear state variables
+  state.firstValue = '';
+  state.secondValue = '';
+  state.previousKeyType = '';
+  state.operator = '';
+  // reset the display 
+  display.textContent = '0';
+};
+
+/**
+ * Handle selection of an operator key.
+ * @param {state} state calculator state
+ * @param {HTMLElement} key selected key
+ * @param {string} operator numeric operation
+ * @param {HTMLElement} display calculator display element
+ */
+const selectOperator = (state, key, operator, display) => {
+  const displayedNum = display.textContent;
 
   if (
-      action === 'add' || 
-      action === 'subtract' ||
-      action === 'multiply' ||
-      action === 'divide'
-    ) {
-    // an operator key was clicked  
-    if (
-      firstValue &&
-      operator &&
-      previousKeyType !== 'operator' &&
-      previousKeyType !== 'calculate'
-    ) {
-      // perform a calculation if a user clicks
-      // a number, an operator, a number, and another operator
-      secondValue = displayedNum;
-      display.textContent = calculate(firstValue, secondValue, operator);
-    }
-
-    // save off the current display value
-    // and the fact that an operator was clicked
-    
-    // HINT set a break point here and check the values
-    // after '55' '-' '5' '*' and pressed 
-    firstValue = display.textContent;
-    previousKeyType = 'operator';
-    operator = action;
-    // highlight the operator button
-    key.classList.add('selected');
+    state.firstValue &&
+    state.operator &&
+    state.previousKeyType !== 'operator' &&
+    state.previousKeyType !== 'calculate'
+  ) {
+    // if a number, an operator, and another number 
+    // were previously all previously selected; go 
+    // ahead an calculate the result using the 
+    // previously selected operator
+    state.secondValue = displayedNum;
+    display.textContent = calculate(state.firstValue, state.secondValue, state.operator);
   }
 
-  if (action === 'decimal') {
-    // decimal key was clicked
-    if (displayedNum.indexOf('.') == -1)
-    {
-      display.textContent = displayedNum + '.';
-      previousKeyType = 'decimal';
-    }
-    if (previousKeyType === 'operator') {
-      // if previous selected key was an operator, reset the display to '0.'
-      display.textContent = '0.';
-    }
-  }
+  // save off the current display value
+  // and the fact that an operator was clicked
+  
+  // HINT set a break point here and check the values
+  // after '55' '-' '5' '*' and pressed 
+  state.firstValue = display.textContent;
+  state.previousKeyType = 'operator';
+  state.operator = operator;
+  // highlight the operator button
+  key.classList.add('selected');
+};
 
-  if (action === 'calculate')
+/**
+ * add decimal to calculator display 
+ * @param {state} state calculator state
+ * @param {HTMLElement} display calculator display element
+ */
+const addDecimal = (state, display) => {
+  const displayedNum = display.textContent;
+
+  if (displayedNum.indexOf('.') == -1)
   {
-    // equals key was clicked
-    if (firstValue)
-    {
-      // calculate the numeric operation 
-      secondValue = displayedNum;
-      display.textContent = calculate(firstValue, secondValue, operator);
-      previousKeyType = 'calculate';
-    }
+    display.textContent = displayedNum + '.';
+    state.previousKeyType = 'decimal';
+  }
+  if (state.previousKeyType === 'operator') {
+    // if previous selected key was an operator, reset the display to '0.'
+    display.textContent = '0.';
+  }
+};
+
+/**
+ * 
+ * @param {state} state calculator state 
+ * @param {HTMLElement} key selected key 
+ * @param {HTMLElement} display calculator display element
+ */
+const selectNumber = (state, key, display) => {
+  const keyContent = key.textContent;
+  let displayedNum = display.textContent;
+
+  if (displayedNum === '0' || state.previousKeyType === 'operator') {
+    // if the calculator shows 0, we want to
+    // replace the display with the clicked key
+    display.textContent = keyContent;
+  }
+  else {
+    // if the calculator shows a non zero number, 
+    // append the clicked key to the displayed number
+    display.textContent = displayedNum + keyContent;
   }
 
-  if (!action) {
-    // a number key was clicked
-    if (displayedNum === '0' || previousKeyType === 'operator') {
-      // if the calculator shows 0, we want to
-      // replace the display with the clicked key
-      display.textContent = keyContent;
-    }
-    else {
-      // if the calculator shows a non zero number, 
-      // append the clicked key to the displayed number
-      display.textContent = displayedNum + keyContent;
-    }
+  state.previousKeyType = 'number';
+};
 
-    previousKeyType = 'number';
+/**
+ * Handle a click event on the '=' button
+ * @param {state} state calculator state
+ * @param {HTMLElement} display calculator display element
+ */
+const selectCalculate = (state, display) => {
+  const displayedNum = display.textContent;
+
+  if (state.firstValue)
+  {
+    // calculate the numeric operation 
+    state.secondValue = displayedNum;
+    
+    display.textContent = calculate(state.firstValue, state.secondValue, state.operator);
+    state.previousKeyType = 'calculate';
   }
- }
-});
+};
 
 /**
  * Calculate the result of the numeric operation using the 
@@ -136,7 +199,7 @@ const calculate = (value1, value2, operator) => {
 
   value1 = parseFloat(value1);
   value2 = parseFloat(value2);
-  
+
   if (operator === 'add') {
     result = value1 + value2;
   } else if (operator === 'subtract') {

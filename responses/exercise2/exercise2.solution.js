@@ -1,10 +1,7 @@
 /**
- * 1. We can make our code easier to understand by creating a
- *    reusable 'sendRequest' method for sending HTTP requests. 
- *    Implement the sendRequest method defined at the end of this file.
- * 2. Update this page so that when a user makes a timezone selection, 
- *    the time displayed on the page is updated to reflect 
- *    the user's selected time zone. 
+ * We can make our code easier to understand by creating a
+ * reusable 'sendRequest' method for sending HTTP requests. 
+ * Implement the sendRequest method defined at the end of this file.
  */
 document.addEventListener('DOMContentLoaded', (e) => {
   let catElem = document.getElementById('cat-fact');

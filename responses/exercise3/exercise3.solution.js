@@ -1,7 +1,7 @@
 /**
- * 1. Implement the search pokemon feature. When a user types a pokemon's
- *    name into the input box, and clicks the search button, the page 
- *    should return the pokemon's information back to the user
+ * Implement the search pokemon feature. When a user types a pokemon's
+ * name into the input box, and clicks the search button, the page 
+ * should return the pokemon's information back to the user
  */
 
 document.addEventListener('DOMContentLoaded', (e) => {

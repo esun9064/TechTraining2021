@@ -7,11 +7,11 @@ const printAndThenDoSomeStuff = (callback) => {
   callback();
 };
 
-const doSomeStuff = () => {
+const doSomething = () => {
   console.log(1 + 5);
 };
 
-printAndThenDoSomeStuff(doSomeStuff);
+printAndThenDoSomeStuff(doSomething);
 
 printAndThenDoSomeStuff(() => {
   console.log(1 + 5);

@@ -154,6 +154,10 @@ const selectNumber = (state, key, display) => {
     // replace the display with the clicked key
     display.textContent = keyContent;
   }
+  else if (state.previousKeyType === 'calculate') {
+    clear(state, display);
+    display.textContent = keyContent;
+  }
   else {
     // if the calculator shows a non zero number, 
     // append the clicked key to the displayed number
@@ -182,11 +186,11 @@ const selectEqual = (state, display) => {
       // if the previous selected operation was the equals 
       // sign, set the first value to be the current number
       // and preserve the first value
-      firstValue = displayedNum;
+      state.firstValue = displayedNum;
     }
     else 
     {
-      secondValue = displayedNum;
+      state.secondValue = displayedNum;
     }
     display.textContent = calculate(state.firstValue, state.secondValue, state.operator);
     state.previousKeyType = 'calculate';

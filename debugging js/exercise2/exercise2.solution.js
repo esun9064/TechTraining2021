@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
         case 'calculate':
           // HINT set a breakpoint and select "55.5" + "5" on the calculator
           // step into the selecCalculate function
-          selectCalculate(state, display);
+          selectEqual(state, display);
           break;
         default:
           selectNumber(state, key, display);
@@ -171,7 +171,7 @@ const selectNumber = (state, key, display) => {
  * @param {state} state calculator state
  * @param {HTMLElement} display calculator display element
  */
-const selectCalculate = (state, display) => {
+const selectEqual = (state, display) => {
   const displayedNum = display.textContent;
 
   if (state.firstValue)

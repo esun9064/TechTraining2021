@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
           addDecimal(state, display);
           break;
         case 'calculate':
-          selectCalculate(state, display);
+          selectEqual(state, display);
           break;
         default:
           selectNumber(state, key, display);
@@ -167,7 +167,7 @@ const selectNumber = (state, key, display) => {
  * @param {state} state calculator state
  * @param {HTMLElement} display calculator display element
  */
-const selectCalculate = (state, display) => {
+const selectEqual = (state, display) => {
   const displayedNum = display.textContent;
 
   if (state.firstValue)

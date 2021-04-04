@@ -2,10 +2,10 @@ const log = (message) => {
   console.log(message);
 };
 
-const printArray = (arr) => {
-  for (let i = 0; i < arr.length; i++)
+const printArray = (inpArray) => {
+  for (let i = 0; i < inpArray.length; i++)
   {
-    log(arr[i]);
+    log(inpArray[i]);
   }
 };
 

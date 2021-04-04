@@ -179,7 +179,7 @@ const selectCalculate = (state, display) => {
     // calculate the numeric operation 
     state.secondValue = displayedNum;
     
-    display.textContent = calculate(state.firstValue, state.secondValue, state.operator);
+    display.textContent = calculate(parseFloat(state.firstValue), parseFloat(state.secondValue), state.operator);
     state.previousKeyType = 'calculate';
   }
 };
@@ -196,7 +196,7 @@ const calculate = (value1, value2, operator) => {
   let result = '';
 
   value1 = parseInt(value1);
-  value2 = parseFloat(value2);
+  value2 = parseInt(value2);
 
   if (operator === 'add') {
     result = value1 + value2;

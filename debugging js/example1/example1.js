@@ -1,17 +1,28 @@
-const log = (message) => {
-  console.log(message);
-};
+document.addEventListener('DOMContentLoaded', (e) => {
+  const button = document.getElementById('count-button');
+  const textElement = document.getElementById('text');
+  const resultElement = document.getElementById('result');
+  const resultContainer = document.getElementById('result-container');
 
-const printArray = (inpArray) => {
-  for (let i = 0; i < inpArray.length; i++)
+  button.addEventListener('click', e => {
+    const text = textElement.innerText;
+    const textArray = text.split(' ');
+    const count = countFalse(textArray);
+
+    resultContainer.style.visibility = 'visible';
+    resultElement.innerText = count;
+  });
+});
+
+const countFalse = (textArray) => {
+  count = 0;
+  for (let text of textArray)
   {
-    log(inpArray[i]);
+    if (text != false)
+    {
+       count++;
+    }
   }
-};
 
-let a = [1, 2, 3, 4];
-printArray(a);
-printArray([1, 2, 3, 4]);
-printArray();
-printArray(1, 2, 3, 4);
-printArray({1: 1, 2: 2, 3: 3, 4: 4});
+  return count;
+};

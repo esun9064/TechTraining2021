@@ -1,9 +1,10 @@
 /** 
- * Edge cases part 2:
- * Select '55', '-', '5', '='. Result should 
- * be 50. Now click on '=' again. Result should be
- * '45', continue to click '=', displayed number
- * should decrement by 5. 
+ * Simple calculator program with addition operator.
+ * 1. Find the bug that is causing the calculator to return 
+ *    the wrong sum when the first number includes a decimal.
+ * 2. Implement subtraction, multiplication, and division 
+ *    operations.
+ *
  */
 
 document.addEventListener('DOMContentLoaded', (e) => {
@@ -37,6 +38,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
           addDecimal(state, display);
           break;
         case 'calculate':
+          // HINT set a breakpoint and select "55.5" + "5" on the calculator
+          // step into the selecCalculate function
           selectEqual(state, display);
           break;
         default:
@@ -113,7 +116,7 @@ const selectOperator = (state, key, operator, display) => {
 
   // save off the current display value
   // and the fact that an operator was clicked
-  state.firstValue = display.textContent;
+  state.firstValue = displayedNum;
   state.previousKeyType = 'operator';
   state.operator = operator;
   // highlight the operator button
@@ -154,10 +157,6 @@ const selectNumber = (state, key, display) => {
     // replace the display with the clicked key
     display.textContent = keyContent;
   }
-  else if (state.previousKeyType === 'calculate') {
-    clear(state, display);
-    display.textContent = keyContent;
-  }
   else {
     // if the calculator shows a non zero number, 
     // append the clicked key to the displayed number
@@ -177,21 +176,9 @@ const selectEqual = (state, display) => {
 
   if (state.firstValue)
   {
-    // HINT: set a breakpoint here before you click the '=' key a second time
-    // we may need a specific check to see if the previous key type was an '=' 
-
     // calculate the numeric operation 
-    if (state.previousKeyType === 'calculate')
-    {
-      // if the previous selected operation was the equals 
-      // sign, set the first value to be the current number
-      // and preserve the first value
-      state.firstValue = displayedNum;
-    }
-    else 
-    {
-      state.secondValue = displayedNum;
-    }
+    state.secondValue = displayedNum;
+    
     display.textContent = calculate(state.firstValue, state.secondValue, state.operator);
     state.previousKeyType = 'calculate';
   }

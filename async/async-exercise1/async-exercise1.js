@@ -1,55 +1,26 @@
-/**
- * Modify this code to log to console the 
- * monetary value of each order for the given user 
- */
+// 1. Open Chrome Dev Tools and inspect the console output. Notice how the console shows an 
+//    an error related to line 19 where the "user" variable is undefined. This is due to 
+//    the fact that one can not return values from an async function such as setTimeout()
 
-console.log('start');
 
-const loginUser = (email, password, callback) => {
+const loginUser = (callback) => {
   setTimeout(() => {
+    const email = 'techtraining2021@mcmaster.com';
     console.log('login successful');
-
-    const user = {
-      'email': email 
+    // 2. Replace the return statement at lines 11-13 with: 'callback(email);'
+    return {
+      'email': email
     };
-
-    callback(user);
-
   }, 2000);
 };
 
-const getOrders = (email, callback) => {
-  setTimeout(() => {
-    callback(['order1', 'order2', 'order3']);
-  }, 1500);
-};
+const user = loginUser();
+console.log("this will print before the login completes");
+console.log(user.email);
 
-const getOrderValue = (order) => {
-  // CHANGE this function to take in a callback
-  setTimeout(() => { 
-    checkOrderValue(order);
-  }, 1000);
-};
 
-const checkOrderValue = (order) => {
-  if (order === 'order1') {
-    return '$100';
-  } else if (order === 'order2') {
-    return '$200';
-  } else if (order === 'order3') {
-    return '$250';
-  }
-};
-
-loginUser('foo@email.com', 12345, user => {
-  console.log(user.email);
-  getOrders(user.email, orders => {
-    console.log(orders);
-    console.log('printing order values one at a time');
-    orders.forEach(order => {
-      // INSERT code that logs order value for a single order
-    });
-  });
-});
-
-console.log('end');
+// 3. Rewrite loginUser() on line 17 to take in an anonymous function: `(email) => {}` 
+// 4. Within the anonymous function's body, 'console.log' the 'email'
+// 6. Remove the 'const user =' from line 17
+// 5. Delete line 19
+// 6. Refresh the page and check that the email is correctly logged to console

@@ -1,11 +1,8 @@
 /** 
- * Edge cases:
- * Chaining operations should work as expected and 
- * compute the correct result. Check to see what 
- * happens if the user clicks on:
- * 55, '-', '5', '*', '2', and then '-'. 
- * The result should be '100'.
- *
+ * Simple calculator program with addition operator.
+ * Find the bug that is preventing the calculator from 
+ * displaying numeric values when a number key is pressed.
+ * Use chrome dev tools to set a break point.
  */
 
 document.addEventListener('DOMContentLoaded', (e) => {
@@ -115,10 +112,7 @@ const selectOperator = (state, key, operator, display) => {
 
   // save off the current display value
   // and the fact that an operator was clicked
-  
-  // HINT set a break point here and check the values
-  // after '55' '-' '5' '*' and pressed 
-  state.firstValue = display.textContent;
+  state.firstValue = displayedNum;
   state.previousKeyType = 'operator';
   state.operator = operator;
   // highlight the operator button
@@ -180,8 +174,8 @@ const selectEqual = (state, display) => {
   {
     // calculate the numeric operation 
     state.secondValue = displayedNum;
-    
-    display.textContent = calculate(state.firstValue, state.secondValue, state.operator);
+
+    display.textContent = calculate(parseFloat(state.firstValue), parseFloat(state.secondValue), state.operator);
     state.previousKeyType = 'calculate';
   }
 };
@@ -197,17 +191,11 @@ const selectEqual = (state, display) => {
 const calculate = (value1, value2, operator) => {
   let result = '';
 
-  value1 = parseFloat(value1);
-  value2 = parseFloat(value2);
+  value1 = parseInt(value1);
+  value2 = parseInt(value2);
 
   if (operator === 'add') {
     result = value1 + value2;
-  } else if (operator === 'subtract') {
-    result = value1 - value2;
-  } else if (operator === 'multiply') {
-    result = value1 * value2;
-  } else if (operator === 'divide') {
-    result = value1 / value2;
   }
 
   return result;

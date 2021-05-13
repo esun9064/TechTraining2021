@@ -1,206 +1,47 @@
-/** 
- * Simple calculator program with addition operator.
- * 1. Find the bug that is causing the calculator to return 
- *    the wrong sum when the first number includes a decimal.
- * 2. Implement subtraction, multiplication, and division 
- *    operations.
- *
- */
 
-document.addEventListener('DOMContentLoaded', (e) => {
-  // retrieve HTML elements from the DOM
-  const calculator = document.querySelector('.calculator');
-  const display = document.querySelector('.calculator-display');
-  const keys = calculator.querySelector('.calculator-keys');
+// 1. Open Chrome Dev Tools and navigate to the console tab. 
+//    This code should print the Circumference and Area for a Circle with a diameter of "10". 
+// 2. In the console tab you will notice an uncaught error in the console output.
+// 3. Follow the stack trace in the error output and set a breakpoint at the line referenced 
+//    in the stack trace (Line 22). Follow the remaining instructions in this file to fix all
+//    the bugs.  
 
-  const state = initializeState();
+function Circle( diameter ){
+  this.diameter = diameter;
+}
 
-  //handle 'click' events where a user clicks on a key in the calculator
-  keys.addEventListener('click', e => {
-    if (e.target.matches('button')) {
-      const key = e.target;
-      const action = key.dataset.action;
-      
-      removeSelectedStyle(key);
-
-      switch(action)
-      {
-        case 'clear':
-          clear(state, display);
-          break;
-        case 'add':
-        case 'subtract':
-        case 'multiply':
-        case 'divide':
-          selectOperator(state, key, action, display);
-          break;
-        case 'decimal':
-          addDecimal(state, display);
-          break;
-        case 'calculate':
-          // HINT set a breakpoint and select "55.5" + "5" on the calculator
-          // step into the selecCalculate function
-          selectEqual(state, display);
-          break;
-        default:
-          selectNumber(state, key, display);
-          break;
-      }
-    }
-  });
-});
-
-/** 
- * Create object to encapsulate current 
- * state of the calculator
- * @returns state object
- */ 
-const initializeState = () => {
-  return {
-    firstValue: '',
-    secondVaue: '',
-    previousKeyType: '',
-    operator: ''
-  };
+Circle.prototype.Diameter = function() {
+  return this.diameter;
 };
 
-/**
- * Clear the selected style from all keys
- * @param {HTMLElement} key target key
- */
-const removeSelectedStyle = (key) =>
-{
-  // reset the highlighted style on operator keys
-  Array.from(key.parentNode.children)
-  .forEach(k => k.classList.remove('selected'));
+Circle.prototype.Radius = function() {
+  // 4. Rewrite line 22 to correctly compute the circumference.
+  //    (Hint: hover over the "this" variable at line 10 if you get stuck).
+  // 5. Remove the breakpoint at line 22, and refresh the page and check the console output to make
+  //    sure the Circumference is calculated correctly after your rewrites.
+  return diameter / 2;
 };
 
-/**
- * Clear state of the calculator
- * @param {state} state calculator state
- * @param {HTMLElement} display calculator display element  
- */
-const clear = (state, display) => {
-  // clear state variables
-  state.firstValue = '';
-  state.secondValue = '';
-  state.previousKeyType = '';
-  state.operator = '';
-  // reset the display 
-  display.textContent = '0';
+Circle.prototype.Circumference = function() {
+  const radius = this.Radius();
+  return 2 * Math.PI * radius;
 };
 
-/**
- * Handle selection of an operator key.
- * @param {state} state calculator state
- * @param {HTMLElement} key selected key
- * @param {string} operator numeric operation
- * @param {HTMLElement} display calculator display element
- */
-const selectOperator = (state, key, operator, display) => {
-  const displayedNum = display.textContent;
-
-  if (
-    state.firstValue &&
-    state.operator &&
-    state.previousKeyType !== 'operator' &&
-    state.previousKeyType !== 'calculate'
-  ) {
-    // if a number, an operator, and another number 
-    // were previously all previously selected; go 
-    // ahead an calculate the result using the 
-    // previously selected operator
-    state.secondValue = displayedNum;
-    display.textContent = calculate(state.firstValue, state.secondValue, state.operator);
-  }
-
-  // save off the current display value
-  // and the fact that an operator was clicked
-  state.firstValue = displayedNum;
-  state.previousKeyType = 'operator';
-  state.operator = operator;
-  // highlight the operator button
-  key.classList.add('selected');
+Circle.prototype.Area = function() {
+  const radius = this.Radius();
+  // 6. Set a break point at line 40.
+  // 7. Check the value of Math.pi by entering it in your console and pressing "enter"
+  // 8. Check the value of Math.pow('2', radius') in your console and pressing "enter"
+  // 9. Fix the bugs by rewriting line 40. If you get stuck, google "Math.pow() javascript" 
+  //    and open the "W3Schools" or "MDN" link to get more information about the Math.pow() 
+  //    javascript method.
+  // 10. Remove the break point at line 40 and refresh the page.
+  // 11. Check to make sure the Area is computed correctly by reading the console.
+  return Math.pi * Math.pow( '2', radius );
 };
 
-/**
- * add decimal to calculator display 
- * @param {state} state calculator state
- * @param {HTMLElement} display calculator display element
- */
-const addDecimal = (state, display) => {
-  const displayedNum = display.textContent;
+const circle = new Circle('10');
 
-  if (displayedNum.indexOf('.') == -1)
-  {
-    display.textContent = displayedNum + '.';
-    state.previousKeyType = 'decimal';
-  }
-  if (state.previousKeyType === 'operator') {
-    // if previous selected key was an operator, reset the display to '0.'
-    display.textContent = '0.';
-  }
-};
+console.log(`Expected Circumference: 31.415m Actual: ${circle.Circumference()}`);
+console.log(`Expected Area: 78.539, Actual: ${circle.Area()}`);
 
-/**
- * 
- * @param {state} state calculator state 
- * @param {HTMLElement} key selected key 
- * @param {HTMLElement} display calculator display element
- */
-const selectNumber = (state, key, display) => {
-  const keyContent = key.textContent;
-  let displayedNum = display.textContent;
-
-  if (displayedNum === '0' || state.previousKeyType === 'operator') {
-    // if the calculator shows 0, we want to
-    // replace the display with the clicked key
-    display.textContent = keyContent;
-  }
-  else {
-    // if the calculator shows a non zero number, 
-    // append the clicked key to the displayed number
-    display.textContent = displayedNum + keyContent;
-  }
-
-  state.previousKeyType = 'number';
-};
-
-/**
- * Handle a click event on the '=' button
- * @param {state} state calculator state
- * @param {HTMLElement} display calculator display element
- */
-const selectEqual = (state, display) => {
-  const displayedNum = display.textContent;
-
-  if (state.firstValue)
-  {
-    // calculate the numeric operation 
-    state.secondValue = displayedNum;
-    
-    display.textContent = calculate(parseFloat(state.firstValue), parseFloat(state.secondValue), state.operator);
-    state.previousKeyType = 'calculate';
-  }
-};
-
-/**
- * Calculate the result of the numeric operation using the 
- * supplied numeric values and the supplied operator
- * @param {string} value1 first value using in the calculation
- * @param {string} value2 second value used in the calculation
- * @param {*} operator numeric operation to perform
- * @returns result of numeric operation
- */
-const calculate = (value1, value2, operator) => {
-  let result = '';
-
-  value1 = parseInt(value1);
-  value2 = parseInt(value2);
-
-  if (operator === 'add') {
-    result = value1 + value2;
-  }
-
-  return result;
-};

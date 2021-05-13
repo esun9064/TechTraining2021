@@ -1,17 +1,30 @@
-use setTimeOut to simulate an async function that returns back some data 
+Prequisites - callbacks 
 
-code as currently written will fail because the data is retrieved asynchronously
-and can't be accessed because it returns back at a later point in time. 
+Description of example: 
+Demonstrate async method - settimeout, and how it delays the execution of the callback function 
 
-loginUser and setTimeout return immediately, the email value that we want only returns after 2 seconds. 
-
-Need to use a callback to retrieve the async value, 
-
-show how we update the code to do this, we give loginUser a callback parm, and in our settimeout, 
-we can invoke the callback once the email is retrieved, and we can pass the email to the callback. 
-
-And then in our calling code, we can pass along an anonymous function as our callback, this anonymous function
-takes in an email object, and we can then interact with the email object within our anonymouse function 
+Order of printing should be: 
+- start 
+- printsomestuff
+- end
+- we are in the time out
+- we are in another time out
 
 
-show how this works in the debugger, step through all the code via break points
+Go into the internals of how async methods are handled in JS
+Callstack doesn't make sense - why doesn't settimeout get called before end?
+  - setTimeout runs, exits and moves onto the console.log 
+  - WEBAPI manages the wait time, and executes the callback once the time period has elapsed 
+
+
+
+Callbacks are not always necessarily async 
+const numbers = [1, 2, 3, 4, 5];
+numbers.forEach(number => {
+  console.log(number);
+})
+
+
+Additional followups:
+What happens if we change the second setTimeout to 1 second? 
+What if both are 1 second? - first will probably complete first

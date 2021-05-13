@@ -1,9 +1,10 @@
 /** 
- * Edge cases part 2:
- * Select '55', '-', '5', '='. Result should 
- * be 50. Now click on '=' again. Result should be
- * '45', continue to click '=', displayed number
- * should decrement by 5. 
+ * Simple calculator program with addition operator.
+ * 1. Find the bug that is causing the calculator to return 
+ *    the wrong sum when the first number includes a decimal.
+ * 2. Implement subtraction, multiplication, and division 
+ *    operations.
+ *
  */
 
 document.addEventListener('DOMContentLoaded', (e) => {
@@ -37,6 +38,8 @@ document.addEventListener('DOMContentLoaded', (e) => {
           addDecimal(state, display);
           break;
         case 'calculate':
+          // HINT set a breakpoint and select "55.5" + "5" on the calculator
+          // step into the selecCalculate function
           selectEqual(state, display);
           break;
         default:
@@ -113,7 +116,7 @@ const selectOperator = (state, key, operator, display) => {
 
   // save off the current display value
   // and the fact that an operator was clicked
-  state.firstValue = display.textContent;
+  state.firstValue = displayedNum;
   state.previousKeyType = 'operator';
   state.operator = operator;
   // highlight the operator button
@@ -173,13 +176,10 @@ const selectEqual = (state, display) => {
 
   if (state.firstValue)
   {
-    // HINT: set a breakpoint here before you click the '=' key a second time
-    // we may need a specific check to see if the previous key type was an '=' 
-
     // calculate the numeric operation 
     state.secondValue = displayedNum;
     
-    display.textContent = calculate(state.firstValue, state.secondValue, state.operator);
+    display.textContent = calculate(parseFloat(state.firstValue), parseFloat(state.secondValue), state.operator);
     state.previousKeyType = 'calculate';
   }
 };
@@ -195,17 +195,11 @@ const selectEqual = (state, display) => {
 const calculate = (value1, value2, operator) => {
   let result = '';
 
-  value1 = parseFloat(value1);
-  value2 = parseFloat(value2);
+  value1 = parseInt(value1);
+  value2 = parseInt(value2);
 
   if (operator === 'add') {
     result = value1 + value2;
-  } else if (operator === 'subtract') {
-    result = value1 - value2;
-  } else if (operator === 'multiply') {
-    result = value1 * value2;
-  } else if (operator === 'divide') {
-    result = value1 / value2;
   }
 
   return result;

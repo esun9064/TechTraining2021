@@ -1,115 +1,49 @@
-/**
- * Implement the search pokemon feature. When a user types a pokemon's
- * name into the input box, and clicks the search button, the page 
- * should return the pokemon's information back to the user
- */
-
-document.addEventListener('DOMContentLoaded', (e) => {
-  const inputText = document.getElementById('pokemon-input');
-  searchPokemon(inputText.value.toLowerCase());
-
-  const searchButton = document.getElementById('search');
-
-  searchButton.addEventListener('click', e => {
-    searchPokemon(inputText.value.toLowerCase());
-  });
-
-  const evolvesFrom = document.getElementById('evolves-from');
-  evolvesFrom.addEventListener('click', e => {
-    const pokemonName = e.currentTarget.innerText.toLowerCase();
-    searchPokemon(pokemonName);
-  });
-});
-
-/**
- * Return information for the given pokemon
- * @param {string} pokemonName pokemon to search for
- */
-const searchPokemon = (pokemonName) => {
-  sendRequest(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`, 'GET', 'json', response => {
-
-    // get image 
-    const imgElem = document.getElementById('pokemon-image');
-    imgElem.setAttribute('src', response.sprites.front_default);
-
-    // get pokedex information 
-    sendRequest(response.species.url, 'GET', 'json', response => {
-      // get name of pokemon
-      const nameHeading = document.getElementById('pokemon-name');
-      nameHeading.innerText = response.names.find(name => {
-        return name.language.name === 'en';
-      }).name;
-
-      // get pokemon description 
-      const description = document.getElementById('description');
-      description.innerText = response.flavor_text_entries.find(flavor_text => {
-        return flavor_text.language.name === 'en';
-      }).flavor_text;
-
-      // get evolution chain:
-      const evolvesFromLink = document.getElementById('evolves-from');
-      if (response.evolves_from_species)
-      {
-        sendRequest(response.evolves_from_species.url, 'GET', 'json', response => {
-          // get name of pokemon
-          evolvesFromLink.innerText = response.names.find(name => {
-            return name.language.name === 'en';
-          }).name;
-        }, response => {
-          console.log('failed to get evolution chain');   
-         });
-      } else {
-        // reset field
-        evolvesFromLink.innerText = '';
-      }
-    }, response => {
-      console.log('failed to get pokedex');
-    });
-
-    // get stats information 
-    const statsListElement = document.getElementById('stats-list');
-    while (statsListElement.firstChild) {
-      statsListElement.removeChild(statsListElement.firstChild);
-    }
-    const stats = response.stats; 
-    stats.forEach(stat => {
-      sendRequest(stat.stat.url, 'GET', 'json', response => {
-        // get name of stat
-        const statName = response.names.find(name => {
-          return name.language.name === 'en';
-        }).name;
-        let el = document.createElement('li');
-        el.innerText = `${statName}: ${stat.base_stat}`;
-        statsListElement.appendChild(el);
-      }, response => {
-        alert('failed to get stats');
-      });
-    });
-
-  }, response => {
-    alert('Pokemon not found');
-  });
-};
-
-/**
- * Send http request
- * @param {string} url request url
- * @param {string} method request method
- * @param {string} responseType returned response type
- * @param {callback} onSuccess callback to invoke when request is successful
- * @param {callback} onFailure callback to invoke when request failed
- */
-const sendRequest = (url, method, responseType, onSuccess, onFailure) => {
+const sendPostRequest = () => {
+  // 1. At line 3, initialize a new const 'xhr' XMLHttpRequest object.
   const xhr = new XMLHttpRequest();
-  xhr.responseType = responseType;
-  xhr.open(method, url, true);
+
+  // 2. At line 7, set the '.responseType' property on the XMLHttpRequest object equal 
+  //    to the string: 'json'
+  xhr.responseType = 'json';
+
+  // 3. At line 11, create a new 'const' variable named 'method', and set the value of 'method' 
+  //    equal the string: 'POST'
+  const method = 'POST';
+
+  // 4. At line 15, create a new 'const' variable named 'url', and set the value or 'url' equal
+  //    to the string: 'https://jsonplaceholder.typicode.com/posts'
+  const url = `https://jsonplaceholder.typicode.com/posts`;
+
+  // 5. At line 19, call the '.open()' method on the XMLHttpRequest object and pass it the 
+  //    'method' and 'url' variables as arguments  
+  xhr.open(method, url);
+
+  // 6. At line 23, call the '.setRequestHeader()' method on the XMLHttpRequest object and pass it
+  //    the strings: 'Content-Type', and 'application/json;charset=UTF-8' as arguments
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+
   xhr.onload = () => {
     let status = xhr.status;
     if (status === 0 || (status >= 200 && status < 400)) {
-      onSuccess(xhr.response);
+      console.log(xhr.response);
     } else {
-      onFailure(xhr.response);
+      // placeholder logic in case the request failed  
+      console.log('response failed');
     }
   };
-  xhr.send();
+
+  let json =  {
+    'title': 'tech training 2021',
+    'body': 'javascript 201',
+    'userId': 1
+  };
+
+  // 7. at line 43, create a 'const' variable named 'postData'. 
+  // 8. Call the method: Json.stringify(json) and assign this method call to the 'postData' variable
+  const postData = JSON.stringify(json);
+
+  // 9. at line 47, call the .send() method on the XMLHttpRequest object, pass in the 'postData'
+  //    variable as a paramemter to the send method.    
+  xhr.send(JSON.stringify(json));
 };
+sendPostRequest();

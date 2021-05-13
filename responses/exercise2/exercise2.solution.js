@@ -1,49 +1,56 @@
-/**
- * We can make our code easier to understand by creating a
- * reusable 'sendRequest' method for sending HTTP requests. 
- * Implement the sendRequest method defined at the end of this file.
- */
-document.addEventListener('DOMContentLoaded', (e) => {
-  let catElem = document.getElementById('cat-fact');
-  let dogElem = document.getElementById('dog-fact');
-  // REPLACE with sendRequest()
-  sendRequest(`https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts`, 'GET', 'json', (response) => {
-    catElem.innerText = response.text;
+// Use query string params to return back facts about different types of animals
 
-  }, (response) => {
-    console.log('response failed');
-  });
-  // REPLACE with sendRequest()
-  sendRequest(`https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts?animal_type=dog`, 'GET', 'json', (response) => {
-    dogElem.innerText = response.text;
-
-  }, (response) => {
-    console.log('response failed');
-  });
-});
-
-/**
- * Send http request
- * @param {string} url request url
- * @param {string} method request method
- * @param {string} responseType returned response type
- * @param {callback} onSuccess callback to invoke when request is successful
- * @param {callback} onFailure callback to invoke when request failed
- */
-const sendRequest = (url, method, responseType, onSuccess, onFailure) => {
-  // INITIALIZE a new XMLHttpRequest here
+const getRandomCatFact = () => {
   const xhr = new XMLHttpRequest();
-  xhr.responseType = responseType;
-  xhr.open(method, url, true);
-  // DEFINE onload and callback behavior
+  xhr.responseType = 'json';
+  const method = 'GET';
+  const url = `https://esun9064-tt21-cat-facts.herokuapp.com/api/v1/facts`;
+  
+  // 1. At line 12, create a new variable 'queryString' and set it equal 
+  //    to the string: '?animal_type=cat'. This query string parameter tells the server to 
+  //    return back only facts about cats as opposed to facts about some other animal.
+  const queryParams = '?animal_type=cat';
+
+  // 2. At line 16, create a new variable named 'combinedUrl' and set it equal
+  //    to `${url}${queryString}`. 
+  const combinedUrl = `${url}${queryParams}`;
+
+  xhr.open(method, combinedUrl, true);
   xhr.onload = () => {
-    let status = xhr.status;
+    const status = xhr.status;
     if (status === 0 || (status >= 200 && status < 400)) {
-      onSuccess(xhr.response);
+      console.log(xhr.response);
     } else {
-      onFailure(xhr.response);
+      console.log('response failed');
     }
   };
-  // SEND request
   xhr.send();
 };
+getRandomCatFact();
+
+const getRandomDogFact = () => {
+  // 3. repeat the above except retrieve random facts about dogs instead of cats. 
+  //    Use the querystring '?animal_type=dog'
+  const xhr = new XMLHttpRequest();
+  xhr.responseType = 'json';
+  const method = 'GET';
+  const url = `https://esun9064-tt21-cat-facts.herokuapp.com/api/v1/facts`;
+
+  const queryParams = '?animal_type=dog';
+
+  const combinedUrl = `${url}${queryParams}`;
+  
+  xhr.open(method, combinedUrl, true);
+  xhr.onload = () => {
+    const status = xhr.status;
+    if (status === 0 || (status >= 200 && status < 400)) {
+      console.log(xhr.response);
+    } else {
+      console.log('response failed');
+    }
+  };
+  xhr.send();
+};
+getRandomDogFact();
+
+// 5. Refresh the page in the browser and open the console to view the returned cat and dog facts

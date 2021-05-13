@@ -1,62 +1,37 @@
-/**
- * We can make our code easier to understand by creating a
- * reusable 'sendRequest' method for sending HTTP requests. 
- * Implement the sendRequest method defined at the end of this file. 
- */
-document.addEventListener('DOMContentLoaded', (e) => {
-  let catElem = document.getElementById('cat-fact');
-  let dogElem = document.getElementById('dog-fact');
-  // REPLACE with sendRequest()
-  let catRequest = new XMLHttpRequest();
-  catRequest.responseType = 'json';
-  let method = 'GET';
-  let url = `https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts`;
+// Use query string params to return back facts about different types of animals
+
+const getRandomCatFact = () => {
+  const xhr = new XMLHttpRequest();
+  xhr.responseType = 'json';
+  const method = 'GET';
+  const url = `https://esun9064-tt21-cat-facts.herokuapp.com/api/v1/facts`;
   
-  catRequest.open(method, url, true);
-  catRequest.onload = () => {
-    let status = catRequest.status;
+  // 1. At line 12, create a new variable 'queryString' and set it equal 
+  //    to the string: '?animal_type=cat'. This query string parameter tells the server to 
+  //    return back only facts about cats as opposed to facts about some other animal.
+
+
+  // 2. At line 16, create a new variable named 'combinedUrl' and set it equal
+  //    to the string: `${url}${queryString}`. 
+
+
+  xhr.open(method, combinedUrl, true);
+  xhr.onload = () => {
+    const status = xhr.status;
     if (status === 0 || (status >= 200 && status < 400)) {
-      catElem.innerText = catRequest.response.text;
+      console.log(xhr.response);
     } else {
-      // placeholder logic in case the request failed  
       console.log('response failed');
     }
   };
-  catRequest.send();
-
-  // REPLACE with sendRequest
-  dogRequest = new XMLHttpRequest();
-  dogRequest.responseType = 'json';
-  method = 'GET';
-  url = `https://esun9064-tt21-cat-facts.herokuapp.com//api/v1/facts?animal_type=dog`;
-  
-  dogRequest.open(method, url, true);
-  dogRequest.onload = () => {
-    let status = dogRequest.status;
-    if (status === 0 || (status >= 200 && status < 400)) {
-      dogElem.innerText = dogRequest.response.text;
-    } else {
-      // placeholder logic in case the request failed  
-      console.log('response failed');
-    }
-  };
-  dogRequest.send();
-
-
-});
-
-/**
- * Send http request
- * @param {string} url request url
- * @param {string} method request method
- * @param {string} responseType returned response type
- * @param {callback} onSuccess callback to invoke when request is successful
- * @param {callback} onFailure callback to invoke when request failed
- */
-const sendRequest = (url, method, responseType, onSuccess, onFailure) => {
-  // INITIALIZE a new XMLHttpRequest here
-
-  // DEFINE onload and callback behavior
-
-  // SEND request
+  xhr.send();
 };
+getRandomCatFact();
+
+const getRandomDogFact = () => {
+  // 3. repeat the above except retrieve random facts about dogs instead of cats. 
+  //    Use the querystring '?animal_type=dog'
+};
+getRandomDogFact();
+
+// 5. Refresh the page in the browser and open the console to view the returned cat and dog facts

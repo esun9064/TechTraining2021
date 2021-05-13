@@ -1,7 +1,7 @@
 const request = new XMLHttpRequest();
 request.responseType = 'json';
 const method = 'GET';
-const url = `http://worldtimeapi.org/api/timezone/America/Chicago`;
+const url = `http://worldtimeapi.org/api/timezone`;
  
 request.open(method, url, true);
 request.onload = () => {

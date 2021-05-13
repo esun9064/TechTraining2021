@@ -2,26 +2,31 @@
  * Check the console output in dev tools for hints.
  */
 
-const printArray = (testArray) => {
-  for (let i = 0; i < testArray.length; i++) {
-    console.log(testArray[i].text);
+ document.addEventListener('DOMContentLoaded', (e) => {
+  const button = document.getElementById('count-button');
+  const textElement = document.getElementById('text');
+  const resultElement = document.getElementById('result');
+  const resultContainer = document.getElementById('result-container');
+
+  button.addEventListener('click', e => {
+    const text = textElement.innerText;
+    const textArray = text.split(' ');
+    const count = countFalse(textArray);
+
+    resultContainer.style.visibility = 'visible';
+    resultElement.innerText = count;
+  });
+});
+
+const countFalse = (textArray) => {
+  count = 0;
+  for (let text of textArray)
+  {
+    if (text !== false)
+    {
+       count++;
+    }
   }
+
+  return count;
 };
-
-testArray = [
-  {text: 'Welcome'},
-  {text: 'to'},
-  {text: 'tech'},
-  {text: 'training'},
-  {text: '2021!'}
-];
-printArray(testArray);
-
-testArray = [
-  {text: 'todays'},
-  {text: 'lesson'},
-  {text: 'is'},
-  {text: 'on'},
-  {text: 'javascript!'}
-];
-printArray(testArray);

@@ -1,6 +1,0 @@
-additional edge cases on equals
-
-55 - 5 =      first value: 55, operator: -, second value: 5, result: 50
-
-first value still 55,   second value: 50, result: 5
-first value still 55,   second value: 5, result: 50

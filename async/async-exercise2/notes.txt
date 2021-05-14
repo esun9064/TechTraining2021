@@ -1,3 +1,0 @@
-show chained callbacks, to get more information
-
-now that we have a user, use the user's email to get orders associated to the user

@@ -1,8 +1,0 @@
-Harder set of exercises, discussing chaining of operations 
-
-Turn the following into slides:
-55             no values
-55 -           firstValue: 55, operator: - 
-55 - 5         firstValue: 55, operator: -
-55 - 5 -       firstValue: 55, operator: -, secondValue: 5, result: 50
-55 - 5 * 2     firstValue: 5           should be 50 

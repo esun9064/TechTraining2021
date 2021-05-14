@@ -1,5 +1,4 @@
-
-Debug and Step through JS using Chrome developer tools 
-Write asynchronous code and use callbacks to return data from asynchronous functions 
-Identify different parts of a request and how this information is sent to the server 
-Use JS to send requests and parse different response types  
+Debug and Step through JS using Chrome Developer tools
+Write asynchronous code and use a callback function to return data from an asynchronous function
+Identify different parts of an HTTP request and use JavaScript to send a request to a server
+Use JavaScript to handle an incoming HTTP response from a server

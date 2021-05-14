@@ -1,8 +1,0 @@
-Prerequisites:
-discuss requests and responses in the absract 
-
-
-Show example of requests and how to build ajax requests 
-
-step through the code and the on success and on failure callbacks 
-

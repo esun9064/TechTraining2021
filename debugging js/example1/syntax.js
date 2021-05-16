@@ -1,8 +1,9 @@
 const numbers = [1, 2, 3, 4;
+alert('successfully defined the numbers array');
 
 function test {
   console.log('this is a test');
-  alert('program ran sucessfully');
 }
 
-test;
+test();
+alert('program ran sucessfully');

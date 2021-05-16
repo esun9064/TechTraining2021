@@ -21,5 +21,4 @@ console.log("this will print before the login completes");
 // 3. Rewrite loginUser() on line 17 to take in an anonymous function: `(email) => {}` 
 // 4. Within the anonymous function's body, 'console.log' the 'email'
 // 6. Remove the 'const user =' from line 17
-// 5. Delete line 19
 // 6. Refresh the page and check that the email is correctly logged to console

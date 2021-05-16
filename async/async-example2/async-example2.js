@@ -17,14 +17,14 @@ function pourCoffee() {
 function fryEggs(numEggs) {
   console.log(`frying ${numEggs} eggs`);
   setTimeout(function() {
-    console.log('eggs are ready');
+    console.log('eggs are ready, taking eggs out of the pan');
   }, 3000);
 }
 
 function fryBacon(slices) {
   console.log(`frying ${slices} slices of bacon`);
   setTimeout(function() {
-    console.log('bacon is ready');
+    console.log('bacon is ready, taking bacon out of the pan');
   }, 3000);
 }
 

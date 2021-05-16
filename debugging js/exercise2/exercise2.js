@@ -6,7 +6,7 @@
 //    in the stack trace (Line 22). Follow the remaining instructions in this file to fix all
 //    the bugs.  
 
-function Circle( diameter ){
+function Circle(diameter) {
   this.diameter = diameter;
 }
 

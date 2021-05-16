@@ -1,9 +1,12 @@
+// create a new AJAX object
 const request = new XMLHttpRequest();
+
+// assign request information
 request.responseType = 'json';
 const method = 'GET';
 const url = `http://worldtimeapi.org/api/timezone`;
  
-request.open(method, url, true);
+// handle response
 request.onload = () => {
   let status = request.status;
   if (status === 0 || (status >= 200 && status < 400)) {
@@ -14,4 +17,10 @@ request.onload = () => {
     console.log('response failed');
   }
 };
+
+// open a new connection and send request
+request.open(method, url);
 request.send();
+
+
+

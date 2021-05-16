@@ -35,3 +35,5 @@ const getRandomDogFact = () => {
 getRandomDogFact();
 
 // 5. Refresh the page in the browser and open the console to view the returned cat and dog facts
+//    Notice how the requests are sent asynchronously, we start sending the dog request before the cat 
+//    request's response has completed 

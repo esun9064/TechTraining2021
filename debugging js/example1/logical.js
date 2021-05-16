@@ -1,10 +1,10 @@
-const numbers = [1, 2, 3, 4];
+const numbers = [1, 2, 3, 4, 5];
 
 if (numbers.length = 4) {
-  console.log('success');
+  alert('length of the array equals 4');
 }
 else {
-  throw 'array is not the correct size';
+  alert('length of array does not equal 4');
 }
 
 function printDescending(number) {
@@ -12,3 +12,4 @@ function printDescending(number) {
     console.log(number);
   }
 }
+printDescending(5);

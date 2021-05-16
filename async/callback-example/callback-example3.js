@@ -19,18 +19,3 @@ const ourCallbackFunction = () => {
 };
 
 printUsingCallback(ourCallbackFunction);
-
-// equivalent to line 16
-printUsingCallback(() => {
-  console.log(1 + 5);
-});
-
-// equivalent to line 16 and line 19
-printUsingCallback(function() {
-  console.log(1 + 5);
-});
-
-const numbers = [1, 2, 3, 4, 5];
-numbers.forEach(function(number) {
-  console.log(number);
-});

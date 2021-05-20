@@ -8,9 +8,11 @@
     <div><a href="arithmetic.html">Arithmetic Error Example</a></div>
     <br/>
     <div><a href="resource.html">Resource Error Example</a></div>
+<<<<<<< Updated upstream
     <br/>
-	<div><a href="resource2.html">Resource #2 Error Example</a></div>
-	<br/>
+=======
+    <div><a href="resource2.html">Resource #2 Error Example</a></div>
+>>>>>>> Stashed changes
     <div><a href="logical.html">Logical Error Example</a></div>
     <br/>
     <div><a href="../../index.html">back</a></div>

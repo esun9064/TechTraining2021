@@ -1,47 +1,35 @@
 
 // 1. Open Chrome Dev Tools and navigate to the console tab. 
 //    This code should print the Circumference and Area for a Circle with a diameter of "10". 
-// 2. In the console tab you will notice an uncaught error in the console output.
-// 3. Follow the stack trace in the error output and set a breakpoint at the line referenced 
-//    in the stack trace (Line 22). Follow the remaining instructions in this file to fix all
-//    the bugs.  
+// 2. You will notice that the "actual" circumference and "actual" area logged in lines 32 and line 33
+//    are incorrect.
 
-function Circle(diameter) {
-  this.diameter = diameter;
+
+console.log(`Expected Circumference: 31.415m Actual: ${getCircumference(10)}`);
+console.log(`Expected Area: 78.539, Actual: ${getArea(10)}`);
+
+// 3. Start by setting a breakpoint at line 14 inside of the getCircumference function
+function getCircumference(diameter) {
+  const radius = getRadius(diameter);
+  // 4. Reload the page and pause on the breakpoint at line 14, press the "F10" or the "Step Through Next Function Call" button in chrome dev tools, this will 
+  //    execute line 14 and pause the program at line 17. 
+  // 5. In chrome dev tools, use your mouse to hover over the 'radius' variable at line 13. This will allow you to examine the output returned by the getRadius() function.  
+  return 2 * Math.PI * radius;
 }
 
-Circle.prototype.Diameter = function() {
-  return this.diameter;
-};
-
-Circle.prototype.Radius = function() {
-  // 4. Rewrite line 22 to correctly compute the circumference.
-  //    (Hint: hover over the "this" variable at line 10 if you get stuck).
-  // 5. Remove the breakpoint at line 22, and refresh the page and check the console output to make
-  //    sure the Circumference is calculated correctly after your rewrites.
-  return diameter / 2;
-};
-
-Circle.prototype.Circumference = function() {
-  const radius = this.Radius();
-  return 2 * Math.PI * radius;
-};
-
-Circle.prototype.Area = function() {
-  const radius = this.Radius();
-  // 6. Set a break point at line 40.
-  // 7. Check the value of Math.pi by entering it in your console and pressing "enter"
-  // 8. Check the value of Math.pow('2', radius') in your console and pressing "enter"
-  // 9. Fix the bugs by rewriting line 40. If you get stuck, google "Math.pow() javascript" 
+function getArea(diameter) {
+  const radius = getRadius(diameter);
+  // 6. Set a break point at line 30.
+  // 7. Check the value of Math.pi by entering "Math.pi" (without quotes) into your console in chrome dev tools and pressing "enter"
+  // 8. Check the value of Math.pow('2', radius') in your console in chrome dev tools
+  // 9. Fix the bugs by rewriting line 30. If you get stuck, google "Math.pow() javascript" 
   //    and open the "W3Schools" or "MDN" link to get more information about the Math.pow() 
   //    javascript method.
-  // 10. Remove the break point at line 40 and refresh the page.
+  // 10. Remove the break point at line 30 and refresh the page.
   // 11. Check to make sure the Area is computed correctly by reading the console.
   return Math.pi * Math.pow( '2', radius );
-};
+}
 
-const circle = new Circle('10');
-
-console.log(`Expected Circumference: 31.415m Actual: ${circle.Circumference()}`);
-console.log(`Expected Area: 78.539, Actual: ${circle.Area()}`);
-
+function getRadius(diameter) {
+  return diameter;
+}

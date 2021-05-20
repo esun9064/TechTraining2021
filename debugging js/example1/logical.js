@@ -12,4 +12,4 @@ function printDescending(number) {
     console.log(number);
   }
 }
-printDescending(5);
+//printDescending(5);

@@ -2,7 +2,7 @@
 // (Strings, numbers, arrays, objects, etc)
 
 const printUsingSuppliedInput = (input) => {
-  console.log(inputText);
+  console.log(input);
 };
 
 printUsingSuppliedInput('6');

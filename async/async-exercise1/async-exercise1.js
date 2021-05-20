@@ -1,5 +1,5 @@
 // 1. Open Chrome Dev Tools and inspect the console output. Notice how the console shows an 
-//    an error related to line 19 where the "user" variable is undefined. This is due to 
+//    an error related to line 22 where the "user" variable is undefined. This is due to 
 //    the fact that one can not return values from an async function such as setTimeout()
 const loginUserSync = () => {
   const email = 'techtraining2021@mcmaster.com';
@@ -25,7 +25,7 @@ console.log(user.email);
 
 
 // 3. Comment out line 21, rewrite loginUserAsync() on line 22 to take in an anonymous function: `(email) => {}` 
-// 4. Within the anonymous function's body, 'console.log' the 'email'
+// 4. Within the anonymous function's body, add a line to 'console.log' the 'email'
 // 5. Remove the 'user =' from line 22
 // 6. Delete line 24
 // 7. Refresh the page and check that the email is correctly logged to console

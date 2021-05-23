@@ -23,12 +23,12 @@ function fryEggs(numEggs) {
 }
 
 function fryBacon(slices) {
-  console.log(`frying ${slices} of bacon`);
+  console.log(`frying ${slices} slices of bacon`);
   wait(3000);
 }
 
 function toastBread(slices) {
-  console.log(`toasting ${slices} of bread`);
+  console.log(`toasting ${slices} slices of bread`);
   wait(2000);
 }
 

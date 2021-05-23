@@ -23,6 +23,6 @@ loginUser(email => {
   // 3. Call the 'getOrders()' function at line 27. Supply an 'email' and an anonymous '(orders) => {}' 
   //    callback function as paramemters to the getOrders() function.
   // 4. Within the anonymous '(orders) => {}' callback function, log to console the 'orders' array.
-  // 5. Refresh the page and check that the orders array is correctly logged to console
+  // 5. Save your changes. Refresh the page and check that the orders array is correctly logged to console
 
 });

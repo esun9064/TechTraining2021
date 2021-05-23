@@ -41,4 +41,4 @@
 // 8. At line 42, send the HTTP request by calling the 'send()' function on the 'request' object
 
 
-// 9. refresh the page on the browser and view the HTTP response in the console
+// 9. Save your changes and refresh the page on the browser and view the HTTP response in the console

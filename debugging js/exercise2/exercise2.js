@@ -30,7 +30,7 @@ function getArea(diameter) {
   // 9. Fix the bugs by rewriting line 35. If you get stuck, google "Math.pow() javascript" 
   //    and open the "W3Schools" or "MDN" link to get more information about the Math.pow() 
   //    javascript method and its expected input parameters
-  // 10. Remove the break point at line 35 and refresh the page.
+  // 10. Remove the break point at line 35, save your changes, and refresh the page.
   // 11. Check to make sure the Area is computed correctly by reading the console.
   return Math.pi * Math.pow( '2', radius );
 }

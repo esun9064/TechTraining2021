@@ -2,9 +2,9 @@
 const request = new XMLHttpRequest();
 
 // assign request information
-request.responseType = 'json';
-const method = 'GET';
 const url = `http://worldtimeapi.org/api/timezone`;
+const method = 'GET';
+request.responseType = 'json';
  
 // handle response
 request.onload = () => {

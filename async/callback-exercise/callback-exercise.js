@@ -18,7 +18,7 @@ function print(team) {
 teams.forEach();
 
 // 4. In chrome dev tools, set a breakpoint at lines 18, and line 6. 
-//    Reload the page, the page should pause on our break point at line 18. 
+//    Save your changes. Reload the page, the page should pause on our break point at line 18. 
 // 5. Click the "resume" button or press "F12" on your keyboard to advance the program 
 //    to our breakpoint within the forEach function at line 6. 
 // 6. With the program paused on line 6, click the "Step Into Next Function Call" button or press 
@@ -30,7 +30,7 @@ teams.forEach();
 //    just like the 'print" function on line 18, and log to console the current team's name
 teams.forEach();
 
-// 9. Reload the page, open chrome dev tools and check the console tab, the program should 
+// 9. Save your changes, reload the page, open chrome dev tools and check the console tab, the program should 
 //    print the contents of the teams array a second time
 
 // 10. Extend the Array.prototype.forEach function to also pass the current index of the array to the 

@@ -27,7 +27,7 @@ console.log(user.email);
 // 3. Comment out line 21, rewrite loginUserAsync() on line 22 to take in an anonymous function: `(email) => {}` 
 // 4. Within the anonymous function's body, add a line to 'console.log' the 'email'
 // 5. Remove the 'user =' from line 22
-// 6. Delete line 24
+// 6. Delete line 24, and save your changes.
 // 7. Refresh the page and check that the email is correctly logged to console
 
 

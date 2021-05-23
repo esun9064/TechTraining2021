@@ -21,8 +21,8 @@ function printIds(inpArray) {
     // 7. While hovered over 'inpArray', expand the contents of the elements within the 
     //    array to find the correct property to use in the 'console.log()' at line 26. 
     // 8. Rewrite line 26 so that the program correctly prints out "1", "2", and then "3" 
-    // 9. Confirm the program is working correctly by refreshing the page and "stepping over" the
-    //    lines in the "printIds()" function. Make sure the console prints "1", "2", then "3".
+    // 9. Save your changes to this file. Confirm the program is working correctly by refreshing the 
+    //    page and "stepping over" the lines in the "printIds()" function. Make sure the console prints "1", "2", then "3".
     console.log(inpArray[i].ids);
   }
 }

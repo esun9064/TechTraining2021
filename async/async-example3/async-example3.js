@@ -6,8 +6,8 @@ const waitTable = (tableNumber) => {
 const prepareFoodAsync = (tableNumber) => {
   console.log(`order for table ${tableNumber} sent to kitchen`);
   setTimeout(() => {
-    console.log(`delivering food to table ${tableNumber}`);
-  }, 0);
+    console.log(`serving food to table ${tableNumber}`);
+  }, 500);
 };
 
 

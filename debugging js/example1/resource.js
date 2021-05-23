@@ -1,7 +1,6 @@
-const printArray = (inpArray) => {
-  for (let i = 0; i < inpArray.length; i++) {
-    console.log(inpArray[i]);
-  }
-};
-
-printArray();
+if (document) {
+	const button = document.getElementById("ex-btn");
+	button.addEventListener('click', () => {
+		alert("Button clicked");
+	});
+}

@@ -32,3 +32,9 @@ teams.forEach();
 
 // 9. Reload the page, open chrome dev tools and check the console tab, the program should 
 //    print the contents of the teams array a second time
+
+// 10. Extend the Array.prototype.forEach function to also pass the current index of the array to the 
+//     callback function. 
+// 11. Update the print function to log each item in the array and the index of the item 
+// 12. Update the anonymouse function at line 31 to log each item in the array along with the index 
+//     of the item. 

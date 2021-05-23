@@ -6,4 +6,4 @@ function test {
 }
 
 test();
-alert('program ran sucessfully');
+console.log('program ran sucessfully');

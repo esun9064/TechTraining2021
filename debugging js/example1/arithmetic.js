@@ -1,5 +1,5 @@
-console.log(`5/0 = ${5/0}`);
-console.log(`0.2 + 0.4 = ${0.2 + 0.4}`); // 0.6000000000000001
+const divideByZeroResult = 5/0;
+const decimalResult = 0.2 + 0.4;
 
-const sum = 0.4 + 0.2;
-sum.toPrecision(2);
+const truncatedResult = decimalResult.toPrecision(2);
+console.log(truncatedResult);

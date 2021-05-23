@@ -7,7 +7,7 @@ const printUsingSuppliedInput = (input) => {
 
 printUsingSuppliedInput(1 + 5);
 
-// Functions can even take in other functions as paramemters
+// Functions can even take in other functions as parameters
 // These are often called 'callback' functions
 const printUsingCallback = (callback) => {
   console.log(callback());

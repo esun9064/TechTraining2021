@@ -1,4 +1,4 @@
-
+// 1. Modify the code to asynchronously log the orders for the given user.
 const loginUser = (callback) => {
   setTimeout(() => {
     const email = 'techtraining2021@mcmaster.com';
@@ -11,7 +11,7 @@ const getOrders = (email, callback) => {
   setTimeout(() => {
     if (email === 'techtraining2021@mcmaster.com') {
       let orders = ['order1', 'order2', 'order3'];
-      // 1. Supply the 'orders' array as a parameter to the callback() function
+      // 2. At line 15, supply the 'orders' array as a parameter to the callback() function.
       callback(orders);
     } else {
       callback([]);
@@ -20,10 +20,10 @@ const getOrders = (email, callback) => {
 };
 
 loginUser(email => {
-  // 2. Call the 'getOrders()' function. Supply an 'email' and an anonymous '(orders) => {}' 
+  // 3. Call the 'getOrders()' function. Supply an 'email' and an anonymous '(orders) => {}' 
   //    callback function as paramemters to the getOrders() function.
-  // 3. Within the anonymous '(orders) => {}' callback function, log to console the 'orders' array.
-  // 4. Refresh the page and check that the orders array is correctly logged to console
+  // 4. Within the anonymous '(orders) => {}' callback function, log to console the 'orders' array.
+  // 5. Refresh the page and check that the orders array is correctly logged to console
   getOrders(email, (orders) => {
     console.log(orders);
   });
